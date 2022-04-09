@@ -21,8 +21,6 @@ export const Testimonials = props => {
   const [ref, slider] = useCarousel({
     slideChanged: slider => setCurrentSlide(slider.track.details.rel),
   });
-  const hasPrevious = currentSlide !== 0;
-  const hasNext = currentSlide < reviews.length - 1;
 
   return (
     <Stack spacing="4" {...rootProps}>
@@ -36,76 +34,58 @@ export const Testimonials = props => {
           },
         }}
       >
-        <Carousel ref={ref}>
-          {reviews.map((review, i) => (
-            <CarouselSlide key={i}>
-              <SimpleGrid
-                py="16"
-                columns={{
-                  base: 1,
-                  lg: 2,
-                }}
-                spacing={{
-                  base: '16',
-                  lg: '32',
-                }}
-              >
-                <Feedback
-                  name={review.name1}
-                  role={review.role1}
-                  image={review.avt1}
+        <Box m="5%">
+          <Carousel ref={ref}>
+            {reviews.map((review, i) => (
+              <CarouselSlide key={i}>
+                <SimpleGrid
+                  py="16"
+                  columns={{
+                    base: 1,
+                    lg: 2,
+                  }}
+                  spacing={{
+                    base: '16',
+                    lg: '32',
+                  }}
                 >
-                  {review.feed1}
-                </Feedback>
-                <Feedback
-                  name={review.name2}
-                  role={review.role2}
-                  image={review.avt2}
-                >
-                  {review.feed2}
-                </Feedback>
-              </SimpleGrid>
-            </CarouselSlide>
-          ))}
-        </Carousel>
-        {hasPrevious && (
-          <CarouselIconButton
-            pos="absolute"
-            left="3"
-            top="50%"
-            transform="translateY(-50%)"
-            onClick={() => slider.current?.prev()}
-            icon={<FiChevronLeft />}
-            aria-label="Previous Slide"
-          />
-        )}
-
-        {hasNext && (
-          <CarouselIconButton
-            pos="absolute"
-            right="3"
-            top="50%"
-            transform="translateY(-50%)"
-            onClick={() => slider.current?.next()}
-            icon={<FiChevronRight />}
-            aria-label="Next Slide"
-          />
-        )}
-        <HStack
-          position="absolute"
-          width="full"
-          justify="center"
-          bottom="0"
-          py="4"
-        >
-          {reviews.map((_, index) => (
-            <Circle
-              key={index}
-              size="2"
-              bg={currentSlide === index ? 'white' : 'whiteAlpha.400'}
-            />
-          ))}
-        </HStack>
+                  <Feedback
+                    name={review.name1}
+                    role={review.role1}
+                    image={review.avt1}
+                  >
+                    {review.feed1}
+                  </Feedback>
+                  <Feedback
+                    name={review.name2}
+                    role={review.role2}
+                    image={review.avt2}
+                  >
+                    {review.feed2}
+                  </Feedback>
+                </SimpleGrid>
+              </CarouselSlide>
+            ))}
+          </Carousel>
+        </Box>
+        <CarouselIconButton
+          pos="absolute"
+          left="3"
+          top="50%"
+          transform="translateY(-50%)"
+          onClick={() => slider.current?.prev()}
+          icon={<FiChevronLeft />}
+          aria-label="Previous Slide"
+        />
+        <CarouselIconButton
+          pos="absolute"
+          right="3"
+          top="50%"
+          transform="translateY(-50%)"
+          onClick={() => slider.current?.next()}
+          icon={<FiChevronRight />}
+          aria-label="Next Slide"
+        />
       </Box>
     </Stack>
   );
@@ -143,7 +123,36 @@ const useCarousel = options => {
   const defaultOptions = {
     selector: '.chakra-carousel__slide',
   };
-  return useKeenSlider({ ...defaultOptions, ...options });
+  return useKeenSlider({ loop: true, ...defaultOptions, ...options }, [
+    slider => {
+      let timeout;
+      let mouseOver = false;
+      function clearNextTimeout() {
+        clearTimeout(timeout);
+      }
+      function nextTimeout() {
+        clearTimeout(timeout);
+        if (mouseOver) return;
+        timeout = setTimeout(() => {
+          slider.next();
+        }, 2000);
+      }
+      slider.on('created', () => {
+        slider.container.addEventListener('mouseover', () => {
+          mouseOver = true;
+          clearNextTimeout();
+        });
+        slider.container.addEventListener('mouseout', () => {
+          mouseOver = false;
+          nextTimeout();
+        });
+        nextTimeout();
+      });
+      slider.on('dragStarted', clearNextTimeout);
+      slider.on('animationEnded', nextTimeout);
+      slider.on('updated', nextTimeout);
+    },
+  ]);
 };
 
 const Feedback = props => {
@@ -186,7 +195,7 @@ const Feedback = props => {
             color={mode('blue.600', 'blue.400')}
             fontSize="xl"
           />
-          <Text mt="3" fontSize="xl" fontWeight="bold" maxW="38rem">
+          <Text mt="2" fontSize="xl" fontWeight="bold" maxW="20rem">
             {children}
           </Text>
         </Box>
