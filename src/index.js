@@ -5,6 +5,7 @@ import LandingPage from './landingPage';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import theme from './theme';
+import 'focus-visible/dist/focus-visible';
 
 ReactDOM.render(
   <StrictMode>
