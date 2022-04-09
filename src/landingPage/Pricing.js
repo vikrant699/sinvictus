@@ -21,7 +21,7 @@ import { motion, AnimateSharedLayout } from 'framer-motion';
 
 export const Pricing = () => {
   return (
-    <Box as="section" bg={mode('gray.100', '#141214')}>
+    <Box as="section" bg={mode('gray.100', '#141214')} pb="24">
       <Box
         maxW={{
           base: 'xl',
@@ -32,37 +32,18 @@ export const Pricing = () => {
           base: '6',
           md: '8',
         }}
+        textAlign="center"
       >
-        <Flex
-          direction="column"
-          align={{
-            base: 'flex-start',
-            md: 'center',
-          }}
-          maxW="2xl"
-          mx="auto"
-        >
+        <Flex direction="column" align="center" maxW="2xl" mx="auto">
           <Heading
             as="h1"
             size="2xl"
             letterSpacing="tight"
             fontWeight="extrabold"
-            textAlign={{
-              base: 'start',
-              md: 'center',
-            }}
           >
             Find the perfect plan for you
           </Heading>
-          <Text
-            mt="4"
-            fontSize="xl"
-            textAlign={{
-              base: 'left',
-              md: 'center',
-            }}
-            color={mode('#141214', 'whiteAlpha.900')}
-          >
+          <Text mt="4" fontSize="xl" color={mode('#141214', 'whiteAlpha.900')}>
             For growing teams and businesses
           </Text>
           <DurationSwitcher mt="10" />
@@ -221,7 +202,7 @@ const RadioButton = props => {
   const { getInputProps, getCheckboxProps, getLabelProps, state } =
     useRadio(props);
   return (
-    <Box as="label" pos="relative" {...getLabelProps()}>
+    <Box as="label" pos="relative" {...getLabelProps()} textAlign="center">
       <input {...getInputProps()} />
       <Center
         {...getCheckboxProps()}
@@ -259,7 +240,7 @@ const DurationSwitcher = props => {
     defaultValue: 'monthly',
   });
   return (
-    <Box pos="relative">
+    <Box pos="relative" textAlign="center">
       <AnimateSharedLayout>
         <Flex
           display="inline-flex"
@@ -340,6 +321,7 @@ const PricingCard = props => {
         md: '16',
       }}
       {...rest}
+      textAlign="center"
     >
       <Heading>{name}</Heading>
       <Divider
@@ -347,14 +329,14 @@ const PricingCard = props => {
         borderWidth="2px"
         borderColor={mode(`${c}.500`, `${c}.200`)}
         my="6"
-        w="56px"
+        w="100%"
       />
 
       <Text maxW="280px" fontSize="lg">
         {description}
       </Text>
 
-      <Box mt="2">
+      <Box mt="2" textAlign="center">
         <Text
           fontSize={{
             base: '6xl',
@@ -376,17 +358,22 @@ const PricingCard = props => {
         Start free trial
       </Button>
 
-      <Box>
+      <Box textAlign="center">
         <Text fontWeight="bold" mb="4">
           What you get:
         </Text>
-        <List spacing="4">
-          {features.map((feature, index) => (
-            <PricingDetail key={index} iconColor={mode(`${c}.500`, `${c}.200`)}>
-              {feature}
-            </PricingDetail>
-          ))}
-        </List>
+        <Center>
+          <List spacing="4">
+            {features.map((feature, index) => (
+              <PricingDetail
+                key={index}
+                iconColor={mode(`${c}.500`, `${c}.200`)}
+              >
+                {feature}
+              </PricingDetail>
+            ))}
+          </List>
+        </Center>
       </Box>
     </Box>
   );

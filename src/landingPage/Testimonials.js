@@ -7,6 +7,7 @@ import {
   Flex,
   Img,
   Text,
+  Heading,
   useColorModeValue as mode,
 } from '@chakra-ui/react';
 import * as React from 'react';
@@ -23,16 +24,16 @@ export const Testimonials = props => {
 
   return (
     <Stack spacing="4" {...rootProps}>
-      <Box
-        position="relative"
-        sx={{
-          _hover: {
-            '> button': {
-              display: 'inline-flex',
-            },
-          },
-        }}
-      >
+      <Box>
+        <Heading
+          as="h1"
+          size="2xl"
+          letterSpacing="tight"
+          fontWeight="extrabold"
+          textAlign="center"
+        >
+          What our clients have to say
+        </Heading>
         <Box m="5%">
           <Carousel ref={ref}>
             {reviews.map((review, i) => (
