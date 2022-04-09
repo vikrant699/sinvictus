@@ -5,12 +5,13 @@ import { Navbar } from './landingPage/Navbar';
 import { Hero } from './landingPage/Hero';
 import { Services } from './landingPage/Services';
 import { FinalTestimonials } from './landingPage/FinalTestimonials';
+import { Pricing } from './landingPage/Pricing';
 
 const styles = {
   global: props => ({
     body: {
       color: mode('#141214', 'whiteAlpha.900')(props),
-      bg: mode('whiteAlpha.900', '#141214')(props),
+      bg: mode('gray.100', '#141214')(props),
     },
   }),
 };
@@ -20,7 +21,7 @@ const components = {
     // setup light/dark mode component defaults
     baseStyle: props => ({
       dialog: {
-        bg: mode('white', '#141214')(props),
+        bg: mode('gray.100', '#141214')(props),
       },
     }),
   },
@@ -38,6 +39,7 @@ function LandingPage() {
       <Hero />
       <Services />
       <FinalTestimonials />
+      <Pricing />
     </ChakraProvider>
   );
 }

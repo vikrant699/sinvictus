@@ -1,6 +1,5 @@
 import {
   Box,
-  Circle,
   HStack,
   IconButton,
   Stack,
@@ -11,7 +10,7 @@ import {
   useColorModeValue as mode,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+// import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { ImQuotesLeft } from 'react-icons/im';
 import { useKeenSlider } from 'keen-slider/react';
 
@@ -68,7 +67,7 @@ export const Testimonials = props => {
             ))}
           </Carousel>
         </Box>
-        <CarouselIconButton
+        {/* <CarouselIconButton
           pos="absolute"
           left="3"
           top="50%"
@@ -85,7 +84,7 @@ export const Testimonials = props => {
           onClick={() => slider.current?.next()}
           icon={<FiChevronRight />}
           aria-label="Next Slide"
-        />
+        /> */}
       </Box>
     </Stack>
   );
@@ -173,7 +172,7 @@ const Feedback = props => {
           base: 'none',
           md: 'block',
         }}
-        mt="2"
+        mt="3"
         flexShrink={0}
         src={image}
         alt={name}
@@ -189,13 +188,13 @@ const Feedback = props => {
         rounded="full"
       />
       <Flex w="full" direction="column">
-        <Box mb="6">
+        <Box mb="5">
           <Box
             as={ImQuotesLeft}
             color={mode('blue.600', 'blue.400')}
             fontSize="xl"
           />
-          <Text mt="2" fontSize="xl" fontWeight="bold" maxW="20rem">
+          <Text fontSize="xl" fontWeight="bold" maxW="20rem">
             {children}
           </Text>
         </Box>
