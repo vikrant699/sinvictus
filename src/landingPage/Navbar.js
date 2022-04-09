@@ -41,7 +41,13 @@ export const Navbar = () => {
         md: '24',
       }}
     >
-      <Box as="nav" bg="bg-accent" color="on-accent">
+      <Box
+        as="header"
+        position="fixed"
+        w="100%"
+        backdropFilter="saturate(180%) blur(5px)"
+        zIndex="2"
+      >
         <Container
           maxW="100%"
           py={{
