@@ -7,6 +7,7 @@ import { Services } from './landingPage/Services';
 import { FinalTestimonials } from './landingPage/FinalTestimonials';
 import { Pricing } from './landingPage/Pricing';
 import { About } from './landingPage/About';
+import { Footer } from './landingPage/Footer';
 
 const styles = {
   global: props => ({
@@ -42,6 +43,7 @@ function LandingPage() {
       <FinalTestimonials />
       <Pricing />
       <About />
+      <Footer />
     </ChakraProvider>
   );
 }
