@@ -22,6 +22,14 @@ import { FiMenu } from 'react-icons/fi';
 import { FaWhatsapp, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { Logo } from './Logo';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import {
+  Link,
+  DirectLink,
+  Element,
+  Events,
+  animateScroll,
+  scrollSpy,
+} from 'react-scroll';
 
 export const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

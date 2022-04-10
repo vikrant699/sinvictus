@@ -15,7 +15,7 @@ import { Logo } from './Logo';
 
 export const Footer = () => {
   return (
-    <Box as="section" pt="16" pb="24">
+    <Box as="section" pt="16" pb="5">
       <Box
         maxW={{
           base: 'xl',
@@ -116,7 +116,6 @@ export const Footer = () => {
           <Divider />
           <Stack
             pt="8"
-            pb="12"
             justify="space-between"
             direction={{
               base: 'column-reverse',
