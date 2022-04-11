@@ -1,6 +1,6 @@
 import React from 'react';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from './theme.js';
 import { Navbar } from './landingPage/Navbar';
 import { Hero } from './landingPage/Hero';
 import { Services } from './landingPage/Services';
@@ -9,31 +9,6 @@ import { Pricing } from './landingPage/Pricing';
 import { About } from './landingPage/About';
 import { Footer } from './landingPage/Footer';
 import { Element } from 'react-scroll';
-
-const styles = {
-  global: props => ({
-    body: {
-      color: mode('#141214', 'whiteAlpha.900')(props),
-      bg: mode('gray.100', '#141214')(props),
-    },
-  }),
-};
-
-const components = {
-  Drawer: {
-    // setup light/dark mode component defaults
-    baseStyle: props => ({
-      dialog: {
-        bg: mode('gray.100', '#141214')(props),
-      },
-    }),
-  },
-};
-
-const theme = extendTheme({
-  components,
-  styles,
-});
 
 function LandingPage() {
   return (

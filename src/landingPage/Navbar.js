@@ -24,6 +24,7 @@ import { FaWhatsapp, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { Logo } from './Logo';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { Link } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
 
 export const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -187,7 +188,9 @@ export const Navbar = () => {
             {isDesktop ? (
               <HStack spacing="4">
                 <ColorModeSwitcher />
-                <Button>Book a Demo</Button>
+                <RouterLink to="/signup">
+                  <Button>Book a Demo</Button>
+                </RouterLink>
               </HStack>
             ) : (
               <>
@@ -315,9 +318,11 @@ export const Navbar = () => {
                             About
                           </Button>
                         </Link>
-                        <Button isFullWidth="true" onClick={onClose}>
-                          Book a Demo
-                        </Button>
+                        <RouterLink to="/signup">
+                          <Button isFullWidth="true" onClick={onClose}>
+                            Book a Demo
+                          </Button>
+                        </RouterLink>
                       </Stack>
                     </DrawerBody>
                     <DrawerFooter>

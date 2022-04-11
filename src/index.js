@@ -1,13 +1,13 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import LandingPage from './landingPage';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import 'focus-visible/dist/focus-visible';
+import App from './App';
 
 ReactDOM.render(
   <StrictMode>
-    <LandingPage />
+    <App />
   </StrictMode>,
   document.getElementById('root')
 );
