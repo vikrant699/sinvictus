@@ -4,6 +4,7 @@ import {
   Heading,
   Img,
   SimpleGrid,
+  Stack,
   Text,
   useColorModeValue as mode,
 } from '@chakra-ui/react';
@@ -14,7 +15,6 @@ import {
   HiCurrencyDollar,
   HiTemplate,
 } from 'react-icons/hi';
-import { Feature } from './Feature';
 
 const FeatureImage = props => (
   <Box flex="1" {...props}>
@@ -128,6 +128,30 @@ export const Services = () => {
           </Box>
         </Flex>
       </Box>
+    </Box>
+  );
+};
+
+const Feature = props => {
+  const { title, children, icon } = props;
+  return (
+    <Box>
+      <Box color={mode('brand.600', 'brand.400')} fontSize="2.5rem">
+        {icon}
+      </Box>
+      <Stack mt="4">
+        <Text
+          as="h3"
+          color={mode('brand.600', 'brand.400')}
+          fontSize="xl"
+          fontWeight="bold"
+        >
+          {title}
+        </Text>
+        <Text paddingEnd="6" lineHeight="tall">
+          {children}
+        </Text>
+      </Stack>
     </Box>
   );
 };

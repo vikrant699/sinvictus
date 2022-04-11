@@ -14,8 +14,35 @@ import * as React from 'react';
 // import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { ImQuotesLeft } from 'react-icons/im';
 import { useKeenSlider } from 'keen-slider/react';
+import { reviews } from './Review_Data';
 
-export const Testimonials = props => {
+export const FinalTestimonials = () => {
+  return (
+    <Box as="section" pt="16" pb="24">
+      <Box
+        maxW={{
+          base: 'xl',
+          md: '7xl',
+        }}
+        mx="auto"
+        px={{
+          base: '6',
+          md: '8',
+        }}
+      >
+        <Testimonials
+          rootProps={{
+            overflow: 'hidden',
+            flex: '1',
+          }}
+          reviews={reviews.slice(0, 5)}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+const Testimonials = props => {
   const { reviews, rootProps } = props;
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [ref, slider] = useCarousel({

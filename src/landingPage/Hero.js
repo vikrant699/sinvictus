@@ -50,7 +50,7 @@ export function Hero() {
               size="xs"
               textTransform="uppercase"
               fontWeight="semibold"
-              color={mode('brand.600', 'brand.300')}
+              color={mode('brand.600', 'brand.400')}
               letterSpacing="wide"
             >
               Hire Talents
@@ -58,7 +58,7 @@ export function Hero() {
             <Heading
               as="h1"
               size="3xl"
-              color={mode('brand.600', 'brand.300')}
+              color={mode('brand.600', 'brand.400')}
               mt="8"
               fontWeight="extrabold"
               letterSpacing="tight"
