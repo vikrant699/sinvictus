@@ -13,7 +13,7 @@ import { HiPlay } from 'react-icons/hi';
 
 export function Hero() {
   return (
-    <Box as="section" pt="16" pb="24">
+    <Box as="section" pt="16">
       <Box
         maxW={{
           base: 'xl',

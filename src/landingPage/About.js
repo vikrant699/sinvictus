@@ -1,19 +1,10 @@
-import {
-  Box,
-  Center,
-  Heading,
-  Divider,
-  Flex,
-  Img,
-  Stack,
-} from '@chakra-ui/react';
+import { Box, Heading, Divider, Flex, Img, Stack } from '@chakra-ui/react';
 import * as React from 'react';
-import { BsFillPlayFill } from 'react-icons/bs';
 import { Logo } from './Logo';
 
 export const About = () => {
   return (
-    <Box as="section">
+    <Box as="section" pt="28">
       <Heading
         as="h1"
         size="2xl"

@@ -15,13 +15,14 @@ import {
   useColorModeValue as mode,
   useRadio,
   useRadioGroup,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 
 export const Pricing = () => {
   return (
-    <Box as="section" bg={mode('gray.100', '#141214')} pb="24">
+    <Box as="section" bg={mode('gray.100', '#141214')} pt="20">
       <Box
         maxW={{
           base: 'xl',
@@ -239,6 +240,11 @@ const DurationSwitcher = props => {
   const { getRadioProps, getRootProps } = useRadioGroup({
     defaultValue: 'monthly',
   });
+
+  const isDesktop = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Box pos="relative" textAlign="center">
       <AnimateSharedLayout>
@@ -265,17 +271,21 @@ const DurationSwitcher = props => {
           </RadioButton>
         </Flex>
       </AnimateSharedLayout>
-      <Box
-        color={mode('blue.600', 'blue.400')}
-        pos="absolute"
-        right="-7rem"
-        top="6"
-      >
-        <Text lineHeight="1" fontWeight="bold">
-          Save 18%
-        </Text>
-        <CurvedLine fontSize="2.5rem" pos="relative" right="8" bottom="1" />
-      </Box>
+      {isDesktop ? (
+        <Box
+          color={mode('blue.600', 'blue.400')}
+          pos="absolute"
+          right="-7rem"
+          top="6"
+        >
+          <Text lineHeight="1" fontWeight="bold">
+            Save 18%
+          </Text>
+          <CurvedLine fontSize="2.5rem" pos="relative" right="8" bottom="1" />
+        </Box>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 };

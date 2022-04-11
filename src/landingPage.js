@@ -8,6 +8,7 @@ import { FinalTestimonials } from './landingPage/FinalTestimonials';
 import { Pricing } from './landingPage/Pricing';
 import { About } from './landingPage/About';
 import { Footer } from './landingPage/Footer';
+import { Element } from 'react-scroll';
 
 const styles = {
   global: props => ({
@@ -37,13 +38,25 @@ const theme = extendTheme({
 function LandingPage() {
   return (
     <ChakraProvider theme={theme}>
-      <Navbar />
-      <Hero />
-      <Services />
-      <FinalTestimonials />
-      <Pricing />
-      <About />
-      <Footer />
+      <Element id="top" name="top">
+        <Navbar />
+      </Element>
+      <Element id="Home" name="Home">
+        <Hero />
+      </Element>
+      <Element id="Services" name="Services">
+        <Services />
+      </Element>
+      <Element id="Testimonials" name="Testimonials">
+        <FinalTestimonials />
+      </Element>
+      <Element id="Pricing" name="Pricing">
+        <Pricing />
+      </Element>
+      <Element id="About" name="About">
+        <About />
+        <Footer />
+      </Element>
     </ChakraProvider>
   );
 }

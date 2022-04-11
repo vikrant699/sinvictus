@@ -24,7 +24,7 @@ export const Testimonials = props => {
 
   return (
     <Stack spacing="4" {...rootProps}>
-      <Box>
+      <Box pt="16">
         <Heading
           as="h1"
           size="2xl"
@@ -34,12 +34,12 @@ export const Testimonials = props => {
         >
           What our clients have to say
         </Heading>
-        <Box m="5%">
+        <Box m="5% 5% 0% 5%">
           <Carousel ref={ref}>
             {reviews.map((review, i) => (
               <CarouselSlide key={i}>
                 <SimpleGrid
-                  py="16"
+                  pt="16"
                   columns={{
                     base: 1,
                     lg: 2,

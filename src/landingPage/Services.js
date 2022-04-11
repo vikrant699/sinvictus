@@ -30,7 +30,7 @@ const FeatureImage = props => (
 
 export const Services = () => {
   return (
-    <Box as="section" py="24">
+    <Box as="section" pt="48">
       <Box
         maxW={{
           base: 'xl',
