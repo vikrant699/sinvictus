@@ -76,7 +76,7 @@ export const Services = () => {
                 fontWeight="extrabold"
               >
                 Manage — <br />
-                <Box as="span" color={mode('blue.600', 'blue.400')}>
+                <Box as="span" color={mode('brand.600', 'brand.400')}>
                   everything
                 </Box>
               </Heading>

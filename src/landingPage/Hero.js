@@ -9,7 +9,7 @@ import {
   useColorModeValue as mode,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import { HiPlay } from 'react-icons/hi';
+import { FaYoutube } from 'react-icons/fa';
 
 export function Hero() {
   return (
@@ -50,7 +50,7 @@ export function Hero() {
               size="xs"
               textTransform="uppercase"
               fontWeight="semibold"
-              color={mode('blue.600', 'blue.300')}
+              color={mode('brand.600', 'brand.300')}
               letterSpacing="wide"
             >
               Hire Talents
@@ -58,7 +58,7 @@ export function Hero() {
             <Heading
               as="h1"
               size="3xl"
-              color={mode('blue.600', 'blue.300')}
+              color={mode('brand.600', 'brand.300')}
               mt="8"
               fontWeight="extrabold"
               letterSpacing="tight"
@@ -85,7 +85,7 @@ export function Hero() {
               <Button
                 size="lg"
                 minW="210px"
-                colorScheme="blue"
+                colorScheme="brand"
                 height="14"
                 px="8"
               >
@@ -93,15 +93,12 @@ export function Hero() {
               </Button>
               <Button
                 size="lg"
-                bg="white"
-                color="gray.900"
-                _hover={{
-                  bg: 'gray.50',
-                }}
+                minW="210px"
+                colorScheme="red"
+                color="white"
                 height="14"
                 px="8"
-                shadow="base"
-                leftIcon={<Box as={HiPlay} fontSize="2xl" />}
+                leftIcon={<Box as={FaYoutube} fontSize="2xl" />}
               >
                 Watch Demo
               </Button>

@@ -192,7 +192,7 @@ const Feedback = props => {
         <Box mb="5">
           <Box
             as={ImQuotesLeft}
-            color={mode('blue.600', 'blue.400')}
+            color={mode('brand.600', 'brand.400')}
             fontSize="xl"
           />
           <Text fontSize="xl" fontWeight="bold" maxW="20rem">
@@ -224,7 +224,7 @@ const Feedback = props => {
               as="cite"
               fontStyle="normal"
               fontWeight="extrabold"
-              color={mode('blue.600', 'blue.400')}
+              color={mode('brand.600', 'brand.400')}
             >
               {name}
             </Text>

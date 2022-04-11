@@ -66,7 +66,7 @@ export const Pricing = () => {
         >
           <PricingCard
             flex="1"
-            colorScheme="blue"
+            colorScheme="brand"
             name="Basic"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             price="$10"
@@ -147,7 +147,7 @@ export const Pricing = () => {
               </Box>
             </Stack>
             <Button
-              colorScheme="blue"
+              colorScheme="brand"
               size="lg"
               mt={{
                 base: '6',
@@ -217,7 +217,7 @@ const RadioButton = props => {
         minW="8rem"
         fontWeight="medium"
         _checked={{
-          color: mode('blue.600', 'blue.200'),
+          color: mode('brand.600', 'brand.200'),
           fontWeight: 'bold',
         }}
       >
@@ -273,7 +273,7 @@ const DurationSwitcher = props => {
       </AnimateSharedLayout>
       {isDesktop ? (
         <Box
-          color={mode('blue.600', 'blue.400')}
+          color={mode('brand.600', 'brand.400')}
           pos="absolute"
           right="-7rem"
           top="6"
