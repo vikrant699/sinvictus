@@ -16,7 +16,13 @@ import { reviews } from './Review_Data';
 
 export const FinalTestimonials = () => {
   return (
-    <Box as="section" pt="16" pb="24">
+    <Box
+      as="section"
+      pt={{
+        base: '0',
+        md: '16',
+      }}
+    >
       <Box
         maxW={{
           base: 'xl',
@@ -56,7 +62,7 @@ const Testimonials = props => {
         >
           What our clients have to say
         </Heading>
-        <Box m="5% 5% 0% 5%">
+        <Box m="0% 5% 0% 5%">
           <Carousel ref={ref}>
             {reviews.map((review, i) => (
               <CarouselSlide key={i}>

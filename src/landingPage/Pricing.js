@@ -34,6 +34,10 @@ export const Pricing = () => {
           md: '8',
         }}
         textAlign="center"
+        pt={{
+          base: '0',
+          md: '16',
+        }}
       >
         <Flex direction="column" align="center" maxW="2xl" mx="auto">
           <Heading

@@ -1,157 +1,131 @@
 import {
   Box,
-  Flex,
+  Container,
   Heading,
-  Img,
+  Icon,
   SimpleGrid,
+  Square,
   Stack,
   Text,
-  useColorModeValue as mode,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import {
-  HiBadgeCheck,
-  HiChartSquareBar,
-  HiCurrencyDollar,
-  HiTemplate,
-} from 'react-icons/hi';
+import { features } from './Services_Data';
 
-const FeatureImage = props => (
-  <Box flex="1" {...props}>
-    <Img
-      objectFit="cover"
-      h="100%"
-      w="100%"
-      src="https://images.unsplash.com/photo-1573878737226-4f9572c22b69?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
-      alt=""
-    />
-  </Box>
-);
-
-export const Services = () => {
-  return (
-    <Box as="section" pt="48">
-      <Box
-        maxW={{
-          base: 'xl',
-          md: '7xl',
-        }}
-        mx="auto"
-        px={{
-          base: '6',
-          md: '8',
+export const Services = () => (
+  <Box as="section" bg="bg-surface" pt="16">
+    <Box
+      maxW={{
+        base: 'xl',
+        md: '7xl',
+      }}
+      mx="auto"
+      px={{
+        base: '6',
+        md: '8',
+      }}
+      pt={{
+        base: '0',
+        md: '24',
+      }}
+    >
+      <Stack
+        spacing={{
+          base: '12',
+          md: '16',
         }}
       >
-        <Flex
-          justify="space-between"
-          direction={{
-            base: 'column',
-            lg: 'row',
+        <Stack
+          spacing={{
+            base: '4',
+            md: '5',
+          }}
+          align="center"
+          textAlign="center"
+        >
+          <Stack spacing="3">
+            <Heading
+              as="h1"
+              size="2xl"
+              letterSpacing="tight"
+              fontWeight="extrabold"
+              textAlign="center"
+            >
+              What can you expect?
+            </Heading>
+          </Stack>
+          <Text
+            color="muted"
+            fontSize={{
+              base: 'lg',
+              md: 'xl',
+            }}
+            maxW="3xl"
+          >
+            A bundle of 210+ ready-to-use, responsive and accessible components
+            with clever structured sourcode files.
+          </Text>
+        </Stack>
+        <SimpleGrid
+          columns={{
+            base: 1,
+            md: 2,
+            lg: 3,
+          }}
+          columnGap={8}
+          rowGap={{
+            base: 10,
+            md: 16,
           }}
         >
-          <FeatureImage
-            maxW={{
-              lg: '560px',
-            }}
-            display={{
-              base: 'none',
-              lg: 'block',
-            }}
-          />
-          <Box
-            maxW={{
-              lg: 'lg',
-            }}
-          >
-            <Box
-              mb={{
-                lg: '8rem',
+          {features.map(feature => (
+            <Stack
+              key={feature.name}
+              spacing={{
+                base: '4',
+                md: '5',
               }}
+              align="center"
+              textAlign="center"
             >
-              <Heading
-                lineHeight="shorter"
-                size="2xl"
-                letterSpacing="tight"
-                color={mode('gray.900', 'white')}
-                fontWeight="extrabold"
+              <Square
+                size={{
+                  base: '10',
+                  md: '12',
+                }}
+                bg="accent"
+                color="inverted"
+                borderRadius="lg"
               >
-                Manage — <br />
-                <Box as="span" color={mode('brand.600', 'brand.400')}>
-                  everything
-                </Box>
-              </Heading>
-              <Text
-                mt="4"
-                fontSize="2xl"
-                color={mode('gray.600', 'gray.400')}
-                maxW={{
-                  lg: 'md',
+                <Icon
+                  as={feature.icon}
+                  boxSize={{
+                    base: '5',
+                    md: '6',
+                  }}
+                />
+              </Square>
+              <Stack
+                spacing={{
+                  base: '1',
+                  md: '2',
                 }}
               >
-                One mission control for your business, wherever you go.
-              </Text>
-            </Box>
-            <FeatureImage
-              my={{
-                base: '14',
-                lg: '0',
-              }}
-              display={{
-                base: 'block',
-                lg: 'none',
-              }}
-            />
-            <SimpleGrid
-              flex="1"
-              columns={{
-                base: 1,
-                md: 2,
-              }}
-              spacing={{
-                base: '3rem',
-                md: '2rem',
-              }}
-            >
-              <Feature title="Order fulfillment" icon={<HiBadgeCheck />}>
-                Sed sit amet velit pharetra, viverra ligula scelerisque, neque.
-              </Feature>
-              <Feature title="Simple Payment" icon={<HiCurrencyDollar />}>
-                Sed sit amet velit pharetra, viverra ligula scelerisque, neque.
-              </Feature>
-              <Feature title="Consumer Insight" icon={<HiChartSquareBar />}>
-                Sed sit amet velit pharetra, viverra ligula scelerisque, neque.
-              </Feature>
-              <Feature title="Intuitive Dashboard" icon={<HiTemplate />}>
-                Sed sit amet velit pharetra, viverra ligula scelerisque, neque.
-              </Feature>
-            </SimpleGrid>
-          </Box>
-        </Flex>
-      </Box>
-    </Box>
-  );
-};
-
-const Feature = props => {
-  const { title, children, icon } = props;
-  return (
-    <Box>
-      <Box color={mode('brand.600', 'brand.400')} fontSize="2.5rem">
-        {icon}
-      </Box>
-      <Stack mt="4">
-        <Text
-          as="h3"
-          color={mode('brand.600', 'brand.400')}
-          fontSize="xl"
-          fontWeight="bold"
-        >
-          {title}
-        </Text>
-        <Text paddingEnd="6" lineHeight="tall">
-          {children}
-        </Text>
+                <Text
+                  fontSize={{
+                    base: 'lg',
+                    md: 'xl',
+                  }}
+                  fontWeight="medium"
+                >
+                  {feature.name}
+                </Text>
+                <Text color="muted">{feature.description}</Text>
+              </Stack>
+            </Stack>
+          ))}
+        </SimpleGrid>
       </Stack>
     </Box>
-  );
-};
+  </Box>
+);

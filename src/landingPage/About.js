@@ -4,7 +4,13 @@ import { Logo } from './Logo';
 
 export const About = () => {
   return (
-    <Box as="section" pt="28">
+    <Box
+      as="section"
+      pt={{
+        base: '16',
+        md: '28',
+      }}
+    >
       <Heading
         as="h1"
         size="2xl"

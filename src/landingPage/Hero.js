@@ -13,7 +13,13 @@ import { FaYoutube } from 'react-icons/fa';
 
 export function Hero() {
   return (
-    <Box as="section" pt="16">
+    <Box
+      as="section"
+      pt={{
+        base: '4',
+        md: '16',
+      }}
+    >
       <Box
         maxW={{
           base: 'xl',
