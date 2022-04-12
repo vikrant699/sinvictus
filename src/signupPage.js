@@ -5,7 +5,7 @@ import theme from './theme.js';
 function SignupPage() {
   return (
     <ChakraProvider theme={theme}>
-      <h1>//signup page to do</h1>
+      <h1>signup page to do</h1>
     </ChakraProvider>
   );
 }
