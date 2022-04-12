@@ -1,7 +1,6 @@
 import {
   Box,
   HStack,
-  IconButton,
   Stack,
   SimpleGrid,
   Flex,
@@ -11,7 +10,6 @@ import {
   useColorModeValue as mode,
 } from '@chakra-ui/react';
 import * as React from 'react';
-// import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { ImQuotesLeft } from 'react-icons/im';
 import { useKeenSlider } from 'keen-slider/react';
 import { reviews } from './Review_Data';
@@ -44,10 +42,7 @@ export const FinalTestimonials = () => {
 
 const Testimonials = props => {
   const { reviews, rootProps } = props;
-  const [currentSlide, setCurrentSlide] = React.useState(0);
-  const [ref, slider] = useCarousel({
-    slideChanged: slider => setCurrentSlide(slider.track.details.rel),
-  });
+  const [ref] = useCarousel();
 
   return (
     <Stack spacing="4" {...rootProps}>
@@ -95,32 +90,14 @@ const Testimonials = props => {
             ))}
           </Carousel>
         </Box>
-        {/* <CarouselIconButton
-          pos="absolute"
-          left="3"
-          top="50%"
-          transform="translateY(-50%)"
-          onClick={() => slider.current?.prev()}
-          icon={<FiChevronLeft />}
-          aria-label="Previous Slide"
-        />
-        <CarouselIconButton
-          pos="absolute"
-          right="3"
-          top="50%"
-          transform="translateY(-50%)"
-          onClick={() => slider.current?.next()}
-          icon={<FiChevronRight />}
-          aria-label="Next Slide"
-        /> */}
       </Box>
     </Stack>
   );
 };
 
-const CarouselIconButton = props => (
-  <IconButton display="none" fontSize="lg" isRound variant="ghost" {...props} />
-);
+// const CarouselIconButton = props => (
+//   <IconButton display="none" fontSize="lg" isRound variant="ghost" {...props} />
+// );
 
 const Carousel = React.forwardRef(function Carousel(props, ref) {
   return (
