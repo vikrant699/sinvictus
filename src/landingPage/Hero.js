@@ -10,14 +10,25 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { FaYoutube } from 'react-icons/fa';
+import { useCarousel, Carousel, CarouselSlide } from './Testimonials';
+
+const images = [
+  'https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGxhZHklMjB3aXRoJTIwbGFwdG9wfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
+  'https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjR8fGJ1c2luZXNzJTIwd29tYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=90',
+];
 
 export function Hero() {
+  const [ref] = useCarousel();
   return (
     <Box
       as="section"
       pt={{
         base: '4',
-        md: '16',
+        md: '20',
+      }}
+      pb={{
+        base: '0',
+        md: '10',
       }}
     >
       <Box
@@ -127,25 +138,36 @@ export function Hero() {
               lg: '560px',
             }}
           >
-            <Img
-              w="full"
-              pos="relative"
-              zIndex="1"
-              h={{
-                lg: '100%',
-              }}
-              objectFit="cover"
-              src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTJ8fGxhZHklMjB3aXRoJTIwbGFwdG9wfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
-              alt="Screening talent"
-            />
-            <Box
-              pos="absolute"
-              w="100%"
-              h="100%"
-              top="-4"
-              left="-4"
-              bg={mode('gray.200', 'gray.700')}
-            />
+            <Carousel ref={ref}>
+              {images.map((image, i) => (
+                <CarouselSlide key={i}>
+                  <Box
+                    pos="relative"
+                    w={{
+                      base: 'full',
+                      lg: '560px',
+                    }}
+                    h={{
+                      base: 'auto',
+                      lg: '560px',
+                    }}
+                  >
+                    <Img
+                      w="full"
+                      pos="relative"
+                      zIndex="1"
+                      h={{
+                        lg: '100%',
+                      }}
+                      objectFit="cover"
+                      src={image}
+                      alt="Screening talent"
+                      transition="0.8s linear"
+                    />
+                  </Box>
+                </CarouselSlide>
+              ))}
+            </Carousel>
           </Box>
         </Stack>
       </Box>

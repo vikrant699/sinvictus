@@ -93,7 +93,7 @@ export const Services = () => (
                   base: '10',
                   md: '12',
                 }}
-                bg="accent"
+                bg="brand.400"
                 color="inverted"
                 borderRadius="lg"
               >

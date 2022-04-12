@@ -105,7 +105,7 @@ const Testimonials = props => {
 //   <IconButton display="none" fontSize="lg" isRound variant="ghost" {...props} />
 // );
 
-const Carousel = React.forwardRef(function Carousel(props, ref) {
+export const Carousel = React.forwardRef(function Carousel(props, ref) {
   return (
     <Flex
       ref={ref}
@@ -118,7 +118,7 @@ const Carousel = React.forwardRef(function Carousel(props, ref) {
   );
 });
 
-const CarouselSlide = props => (
+export const CarouselSlide = props => (
   <Box
     className="chakra-carousel__slide"
     position="relative"
@@ -129,7 +129,7 @@ const CarouselSlide = props => (
   />
 );
 
-const useCarousel = options => {
+export const useCarousel = options => {
   const defaultOptions = {
     selector: '.chakra-carousel__slide',
   };
