@@ -24,11 +24,11 @@ export function Hero() {
       as="section"
       pt={{
         base: '4',
-        md: '20',
+        lg: '20',
       }}
       pb={{
         base: '0',
-        md: '10',
+        lg: '10',
       }}
     >
       <Box

@@ -24,7 +24,7 @@ export const Services = () => (
       }}
       pt={{
         base: '0',
-        md: '24',
+        lg: '24',
       }}
     >
       <Stack

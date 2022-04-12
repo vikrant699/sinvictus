@@ -21,7 +21,7 @@ import {
 import * as React from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { FaWhatsapp, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
-import { Logo } from './Logo';
+import { Logo } from '../Logo';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { Link } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
@@ -191,6 +191,7 @@ export const Navbar = () => {
                 <RouterLink to="/signup">
                   <Button>Book a Demo</Button>
                 </RouterLink>
+                <Button>Log In</Button>
               </HStack>
             ) : (
               <>
@@ -323,6 +324,9 @@ export const Navbar = () => {
                             Book a Demo
                           </Button>
                         </RouterLink>
+                        <Button isFullWidth="true" onClick={onClose}>
+                          Log In
+                        </Button>
                       </Stack>
                     </DrawerBody>
                     <DrawerFooter>

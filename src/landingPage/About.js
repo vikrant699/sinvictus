@@ -1,6 +1,6 @@
 import { Box, Heading, Divider, Flex, Img, Stack } from '@chakra-ui/react';
 import * as React from 'react';
-import { Logo } from './Logo';
+import { Logo } from '../Logo';
 
 export const About = () => {
   return (

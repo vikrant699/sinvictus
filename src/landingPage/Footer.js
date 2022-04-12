@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { Logo } from './Logo';
+import { Logo } from '../Logo';
 
 export const Footer = () => {
   return (
