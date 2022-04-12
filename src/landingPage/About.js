@@ -6,7 +6,7 @@ export const About = () => {
   return (
     <Box
       as="section"
-      pt={{
+      py={{
         base: '16',
         md: '28',
       }}

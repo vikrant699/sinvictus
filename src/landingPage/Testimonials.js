@@ -52,7 +52,7 @@ const Testimonials = props => {
 
   return (
     <Stack spacing="4" {...rootProps}>
-      <Box pt="16">
+      <Box pt="20">
         <Heading
           as="h1"
           size="2xl"
@@ -62,7 +62,7 @@ const Testimonials = props => {
         >
           What our clients have to say
         </Heading>
-        <Box m="0% 5% 0% 5%">
+        <Box m="2% 5% 0% 5%">
           <Carousel ref={ref}>
             {reviews.map((review, i) => (
               <CarouselSlide key={i}>

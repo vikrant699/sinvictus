@@ -7,6 +7,7 @@ import {
   IconButton,
   Input,
   Stack,
+  useColorModeValue as mode,
   Text,
 } from '@chakra-ui/react';
 import * as React from 'react';
@@ -15,7 +16,7 @@ import { Logo } from './Logo';
 
 export const Footer = () => {
   return (
-    <Box as="section" pt="16" pb="5">
+    <Box as="section" bg={mode('white', '#242424')}>
       <Box
         maxW={{
           base: 'xl',

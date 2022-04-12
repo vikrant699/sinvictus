@@ -1,13 +1,11 @@
 import {
   Box,
-  Container,
   Heading,
   Icon,
   SimpleGrid,
   Square,
   Stack,
   Text,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { features } from './Services_Data';
