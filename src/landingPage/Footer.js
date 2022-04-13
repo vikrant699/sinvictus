@@ -18,11 +18,17 @@ export const Footer = () => {
   return (
     <Box as="section" bg={mode('white', '#242424')}>
       <Box
+        bottom="0"
         maxW={{
           base: 'xl',
           md: '7xl',
         }}
         mx="auto"
+        mt={{
+          base: '0',
+          md: '24',
+          lg: '0',
+        }}
         px={{
           base: '6',
           md: '8',
@@ -31,7 +37,7 @@ export const Footer = () => {
         <Container
           maxW="100%"
           py={{
-            base: '3',
+            base: '2',
             lg: '4',
           }}
         >

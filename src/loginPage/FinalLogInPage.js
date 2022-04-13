@@ -70,7 +70,8 @@ export const FinalLogInPage = () => {
               }}
               py={{
                 base: '5',
-                md: '5',
+                md: '20',
+                lg: '5',
               }}
               width="full"
               maxW={{

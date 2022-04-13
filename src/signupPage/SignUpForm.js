@@ -50,16 +50,16 @@ export const SignUpForm = props => {
         <Stack spacing="5">
           <Stack spacing="5" direction="row" maxW="100%">
             <FormControl>
-              <FormLabel htmlFor="password">First Name</FormLabel>
-              <Input id="password" placeholder="********" type="password" />
+              <FormLabel htmlFor="text">First Name</FormLabel>
+              <Input id="firstName" placeholder="First" type="text" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">Last</FormLabel>
-              <Input id="password" placeholder="********" type="password" />
+              <FormLabel htmlFor="text">Last Name</FormLabel>
+              <Input id="lastName" placeholder="Last" type="text" />
             </FormControl>
           </Stack>
           <FormControl>
-            <FormLabel htmlFor="email">Country</FormLabel>
+            <FormLabel htmlFor="text">Country</FormLabel>
             <Select
               p="0"
               m="0"
@@ -73,9 +73,13 @@ export const SignUpForm = props => {
           </FormControl>
 
           <FormControl>
-            <FormLabel htmlFor="email">Phone Number</FormLabel>
+            <FormLabel htmlFor="number">Phone Number</FormLabel>
             <InputGroup>
-              <Input id="email" placeholder="Enter your number" type="email" />
+              <Input
+                id="phoneNumber"
+                placeholder="Enter your number"
+                type="number"
+              />
             </InputGroup>
           </FormControl>
           <FormControl>

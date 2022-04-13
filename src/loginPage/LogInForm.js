@@ -86,7 +86,7 @@ export const LogInForm = props => {
             leftIcon={<GoogleIcon boxSize="5" />}
             iconSpacing="3"
           >
-            Sign up with Google
+            Log in with Google
           </Button>
         </Stack>
       </Stack>
