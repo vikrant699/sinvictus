@@ -29,8 +29,8 @@ export const Header = () => {
             </HStack>
             <HStack spacing="4">
               <ColorModeSwitcher />
-              <RouterLink to="/login">
-                <Button>Log In</Button>
+              <RouterLink to="/signup">
+                <Button>Register</Button>
               </RouterLink>
             </HStack>
           </Flex>

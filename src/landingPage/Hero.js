@@ -122,7 +122,7 @@ export function Hero() {
             </Stack>
             <Text mt="8" color={mode('gray.600', 'gray.400')}>
               Already have an account store?{' '}
-              <Link href="#" textDecoration="underline">
+              <Link href="/login" textDecoration="underline">
                 Log in
               </Link>
             </Text>

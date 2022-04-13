@@ -1,18 +1,18 @@
 import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme.js';
-import { Header } from './signupPage/Header';
-import { FinalSignUpPage } from './signupPage/FinalSignUpPage';
+import { Header } from './loginPage/Header';
+import { FinalLogInPage } from './loginPage/FinalLogInPage';
 import { Footer } from './landingPage/Footer';
 
-function SignupPage() {
+function LoginPage() {
   return (
     <ChakraProvider theme={theme}>
       <Header />
-      <FinalSignUpPage />
+      <FinalLogInPage />
       <Footer />
     </ChakraProvider>
   );
 }
 
-export default SignupPage;
+export default LoginPage;

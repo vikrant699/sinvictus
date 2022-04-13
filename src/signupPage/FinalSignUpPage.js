@@ -15,7 +15,7 @@ import {
 } from '../landingPage/Testimonials';
 import { features } from './Feature_Data';
 
-export const FinalPage = () => {
+export const FinalSignUpPage = () => {
   const [ref] = useCarousel();
   const headingSize = useBreakpointValue({
     md: 'lg',
@@ -91,11 +91,9 @@ export const FinalPage = () => {
               {features.map((feature, i) => (
                 <CarouselSlide key={i}>
                   <Stack spacing="6">
-                    <Image src={feature.img} h="500px" w="500px" />
-                    <Heading size={headingSize} maxW="500px">
-                      {feature.title}
-                    </Heading>
-                    <Text fontSize="lg" maxW="500px" fontWeight="medium">
+                    <Image src={feature.img} h="500px" w="100%" />
+                    <Heading size={headingSize}>{feature.title}</Heading>
+                    <Text fontSize="lg" fontWeight="medium">
                       {feature.desc}
                     </Text>
                   </Stack>

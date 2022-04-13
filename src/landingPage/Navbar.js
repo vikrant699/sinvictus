@@ -191,7 +191,9 @@ export const Navbar = () => {
                 <RouterLink to="/signup">
                   <Button>Book a Demo</Button>
                 </RouterLink>
-                <Button>Log In</Button>
+                <RouterLink to="/login">
+                  <Button>Log In</Button>
+                </RouterLink>
               </HStack>
             ) : (
               <>
@@ -324,9 +326,11 @@ export const Navbar = () => {
                             Book a Demo
                           </Button>
                         </RouterLink>
-                        <Button isFullWidth="true" onClick={onClose}>
-                          Log In
-                        </Button>
+                        <RouterLink to="/login">
+                          <Button isFullWidth="true" onClick={onClose}>
+                            Log In
+                          </Button>
+                        </RouterLink>
                       </Stack>
                     </DrawerBody>
                     <DrawerFooter>
