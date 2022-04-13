@@ -1,13 +1,13 @@
 import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme.js';
-import { Navbar } from './landingPage/Navbar';
-import { Hero } from './landingPage/Hero';
-import { Services } from './landingPage/Services';
-import { FinalTestimonials } from './landingPage/Testimonials';
-import { Pricing } from './landingPage/Pricing';
-import { About } from './landingPage/About';
-import { Footer } from './landingPage/Footer';
+import { Navbar } from '../landingPage/Navbar';
+import { Hero } from '../landingPage/Hero';
+import { Services } from '../landingPage/Services';
+import { FinalTestimonials } from '../landingPage/Testimonials';
+import { Pricing } from '../landingPage/Pricing';
+import { About } from '../landingPage/About';
+import { Footer } from '../landingPage/Footer';
 import { Element } from 'react-scroll';
 
 function LandingPage() {
