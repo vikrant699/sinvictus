@@ -2,49 +2,43 @@ import {
   Button,
   FormControl,
   FormLabel,
-  Checkbox,
   Heading,
   HStack,
   Input,
-  InputGroup,
-  InputRightAddon,
   Stack,
   Text,
   Alert,
   useBreakpointValue,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import { GoogleIcon } from '../signupPage/ProviderIcons';
 import { useAuth } from '../contexts/AuthContext';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
-export const LogInForm = props => {
-  const [show, setShow] = React.useState(false);
-  const handleClick = () => setShow(!show);
+export const ForgotPasswordForm = props => {
   const emailRef = React.useRef();
-  const passwordRef = React.useRef();
-  const { logIn } = useAuth();
+  const { resetPassword } = useAuth();
   const [error, setError] = React.useState('');
   const [invalidInput, setInvalidInput] = React.useState(false);
   const [buttonLoading, setButtonLoading] = React.useState(false);
-  const navigate = useNavigate();
+  const [message, setMessage] = React.useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if ((emailRef.current.value, passwordRef.current.value)) {
+    if (emailRef.current.value) {
       try {
         setInvalidInput(false);
+        setMessage('');
         setError('');
         setButtonLoading(true);
-        await logIn(emailRef.current.value, passwordRef.current.value);
-        navigate('/dashboard');
+        await resetPassword(emailRef.current.value);
+        setMessage('Check your email for further instructions');
       } catch {
         setInvalidInput(true);
-        setError('Failed to log in');
+        setError('Failed to reset password');
       }
       setButtonLoading(false);
     } else {
-      return setError('One of the fields is empty');
+      return setError('Please enter your email');
     }
   };
 
@@ -64,7 +58,7 @@ export const LogInForm = props => {
               md: 'sm',
             })}
           >
-            Log in here
+            Forgot your password?
           </Heading>
           <HStack spacing="1" justify="center">
             <Text color="muted">Not registered yet?</Text>
@@ -88,53 +82,17 @@ export const LogInForm = props => {
               isInvalid={invalidInput}
             />
           </FormControl>
-          <FormControl>
-            <FormLabel htmlFor="password">Password</FormLabel>
-            <InputGroup>
-              <Input
-                id="password"
-                placeholder="********"
-                type={show ? 'text' : 'password'}
-                ref={passwordRef}
-                isInvalid={invalidInput}
-              />
-              <InputRightAddon p="0" m="0">
-                <Button
-                  h="100%"
-                  w="50px"
-                  size="sm"
-                  onClick={handleClick}
-                  rounded="0"
-                >
-                  {show ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightAddon>
-            </InputGroup>
-          </FormControl>
         </Stack>
-        <HStack justify="space-between">
-          <Checkbox defaultIsChecked>Remember me</Checkbox>
-          <RouterLink to="/forgot-password">
-            <Button variant="link" colorScheme="blue" size="sm">
-              Forgot password?
-            </Button>
-          </RouterLink>
-        </HStack>
+
         <Stack spacing="4">
+          {message && <Alert status="success">{message}</Alert>}
           {error && <Alert status="error">{error}</Alert>}
           <Button
             onClick={handleSubmit}
             isLoading={buttonLoading}
             variant="primary"
           >
-            Log in
-          </Button>
-          <Button
-            variant="secondary"
-            leftIcon={<GoogleIcon boxSize="5" />}
-            iconSpacing="3"
-          >
-            Log in with Google
+            Reset Passowrd
           </Button>
         </Stack>
       </Stack>
