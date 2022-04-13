@@ -28,10 +28,11 @@ export const SignUpForm = props => {
   const lastNamedRef = React.useRef();
   const countryRef = React.useRef();
   const phoneNumberRef = React.useRef();
-  const { signUp, currentUser } = useAuth();
+  const { signUp, signInWithGoogle } = useAuth();
   const [error, setError] = React.useState('');
   const [invalidInput, setInvalidInput] = React.useState(false);
   const [buttonLoading, setButtonLoading] = React.useState(false);
+  const [googleButtonLoading, setGoogleButtonLoading] = React.useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async e => {
@@ -57,10 +58,23 @@ export const SignUpForm = props => {
         }
         setButtonLoading(false);
       } else {
-        return setError('Passwords do not match'), setInvalidInput(true);
+        return [setError('Passwords do not match'), setInvalidInput(true)];
       }
     } else {
       return setError('One of the fields is empty');
+    }
+  };
+
+  const handleGoogleSubmit = async e => {
+    e.preventDefault();
+    try {
+      setInvalidInput(false);
+      setError('');
+      setGoogleButtonLoading(true);
+      await signInWithGoogle();
+      navigate('/dashboard');
+    } catch {
+      setError('Failed to create an account');
     }
   };
 
@@ -197,6 +211,8 @@ export const SignUpForm = props => {
             Register
           </Button>
           <Button
+            isLoading={googleButtonLoading}
+            onClick={handleGoogleSubmit}
             variant="secondary"
             leftIcon={<GoogleIcon boxSize="5" />}
             iconSpacing="3"

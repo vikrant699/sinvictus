@@ -23,10 +23,11 @@ export const LogInForm = props => {
   const handleClick = () => setShow(!show);
   const emailRef = React.useRef();
   const passwordRef = React.useRef();
-  const { logIn } = useAuth();
+  const { logIn, signInWithGoogle } = useAuth();
   const [error, setError] = React.useState('');
   const [invalidInput, setInvalidInput] = React.useState(false);
   const [buttonLoading, setButtonLoading] = React.useState(false);
+  const [googleButtonLoading, setGoogleButtonLoading] = React.useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async e => {
@@ -45,6 +46,19 @@ export const LogInForm = props => {
       setButtonLoading(false);
     } else {
       return setError('One of the fields is empty');
+    }
+  };
+
+  const handleGoogleSubmit = async e => {
+    e.preventDefault();
+    try {
+      setInvalidInput(false);
+      setError('');
+      setGoogleButtonLoading(true);
+      await signInWithGoogle();
+      navigate('/dashboard');
+    } catch {
+      setError('Failed to log in');
     }
   };
 
@@ -130,6 +144,8 @@ export const LogInForm = props => {
             Log in
           </Button>
           <Button
+            isLoading={googleButtonLoading}
+            onClick={handleGoogleSubmit}
             variant="secondary"
             leftIcon={<GoogleIcon boxSize="5" />}
             iconSpacing="3"
