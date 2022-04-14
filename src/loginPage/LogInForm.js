@@ -14,7 +14,6 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import { GoogleIcon } from '../signupPage/ProviderIcons';
 import { useAuth } from '../contexts/AuthContext';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
@@ -23,11 +22,10 @@ export const LogInForm = props => {
   const handleClick = () => setShow(!show);
   const emailRef = React.useRef();
   const passwordRef = React.useRef();
-  const { logIn, signInWithGoogle } = useAuth();
+  const { logIn } = useAuth();
   const [error, setError] = React.useState('');
   const [invalidInput, setInvalidInput] = React.useState(false);
   const [buttonLoading, setButtonLoading] = React.useState(false);
-  const [googleButtonLoading, setGoogleButtonLoading] = React.useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async e => {
@@ -40,25 +38,13 @@ export const LogInForm = props => {
         await logIn(emailRef.current.value, passwordRef.current.value);
         navigate('/dashboard');
       } catch {
+        setButtonLoading(false);
         setInvalidInput(true);
         setError('Failed to log in');
       }
       setButtonLoading(false);
     } else {
       return setError('One of the fields is empty');
-    }
-  };
-
-  const handleGoogleSubmit = async e => {
-    e.preventDefault();
-    try {
-      setInvalidInput(false);
-      setError('');
-      setGoogleButtonLoading(true);
-      await signInWithGoogle();
-      navigate('/dashboard');
-    } catch {
-      setError('Failed to log in');
     }
   };
 
@@ -142,15 +128,6 @@ export const LogInForm = props => {
             variant="primary"
           >
             Log in
-          </Button>
-          <Button
-            isLoading={googleButtonLoading}
-            onClick={handleGoogleSubmit}
-            variant="secondary"
-            leftIcon={<GoogleIcon boxSize="5" />}
-            iconSpacing="3"
-          >
-            Log in with Google
           </Button>
         </Stack>
       </Stack>

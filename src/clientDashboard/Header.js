@@ -53,7 +53,7 @@ export const Header = () => {
             </HStack>
             <HStack spacing="4">
               <ColorModeSwitcher />
-              <Text>{currentUser.email}</Text>
+              <Text>{currentUser.displayName}</Text>
               <Button onClick={handleLogOut}>Log Out</Button>
             </HStack>
           </Flex>

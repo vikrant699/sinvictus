@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { Select } from 'chakra-react-select';
-import { GoogleIcon } from './ProviderIcons';
 import { groupedCountries } from './Country_Data';
 import { useAuth } from '../contexts/AuthContext';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
@@ -28,11 +27,10 @@ export const SignUpForm = props => {
   const lastNamedRef = React.useRef();
   const countryRef = React.useRef();
   const phoneNumberRef = React.useRef();
-  const { signUp, signInWithGoogle } = useAuth();
+  const { signUp, addUserToDb, currentUser } = useAuth();
   const [error, setError] = React.useState('');
   const [invalidInput, setInvalidInput] = React.useState(false);
   const [buttonLoading, setButtonLoading] = React.useState(false);
-  const [googleButtonLoading, setGoogleButtonLoading] = React.useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async e => {
@@ -40,8 +38,8 @@ export const SignUpForm = props => {
     if (
       (firstNamedRef.current.value,
       lastNamedRef.current.value,
-      phoneNumberRef.current.value,
       countryRef.current.value,
+      phoneNumberRef.current.value,
       emailRef.current.value,
       passwordRef.current.value,
       passwordConfirmRef.current.value)
@@ -52,8 +50,17 @@ export const SignUpForm = props => {
           setError('');
           setButtonLoading(true);
           await signUp(emailRef.current.value, passwordRef.current.value);
+          await addUserToDb('RegisteredUsers', emailRef.current.value, {
+            FirstName: String(firstNamedRef.current.value),
+            LastName: String(lastNamedRef.current.value),
+            Country: String(countryRef.current.value),
+            PhoneNumber: Number(phoneNumberRef.current.value),
+            Email: String(emailRef.current.value),
+            UID: String(currentUser.uid),
+          });
           navigate('/dashboard');
         } catch {
+          setButtonLoading(false);
           setError('Failed to create an account');
         }
         setButtonLoading(false);
@@ -62,19 +69,6 @@ export const SignUpForm = props => {
       }
     } else {
       return setError('One of the fields is empty');
-    }
-  };
-
-  const handleGoogleSubmit = async e => {
-    e.preventDefault();
-    try {
-      setInvalidInput(false);
-      setError('');
-      setGoogleButtonLoading(true);
-      await signInWithGoogle();
-      navigate('/dashboard');
-    } catch {
-      setError('Failed to create an account');
     }
   };
 
@@ -209,15 +203,6 @@ export const SignUpForm = props => {
             onClick={handleSubmit}
           >
             Register
-          </Button>
-          <Button
-            isLoading={googleButtonLoading}
-            onClick={handleGoogleSubmit}
-            variant="secondary"
-            leftIcon={<GoogleIcon boxSize="5" />}
-            iconSpacing="3"
-          >
-            Sign up with Google
           </Button>
         </Stack>
       </Stack>
