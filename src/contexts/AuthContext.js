@@ -7,7 +7,7 @@ import {
   signOut,
   sendPasswordResetEmail,
 } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const AuthContext = React.createContext();
 
@@ -17,6 +17,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
+  const [users, setUsers] = useState();
   const [loading, setLoading] = useState(true);
 
   const signUp = (email, password) => {
@@ -40,10 +41,17 @@ export const AuthProvider = ({ children }) => {
     return setDoc(registeredUsersRef, data);
   };
 
+  const getUserFromDb = async () => {
+    const registeredUsersRef = doc(db, 'RegisteredUsers', currentUser.email);
+    const data = await getDoc(registeredUsersRef);
+    setUsers(data.data());
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       setCurrentUser(user);
       setLoading(false);
+      getUserFromDb();
     });
     return unsubscribe;
   });
@@ -55,6 +63,7 @@ export const AuthProvider = ({ children }) => {
     logOut,
     resetPassword,
     addUserToDb,
+    users,
   };
 
   return (

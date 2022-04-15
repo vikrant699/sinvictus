@@ -25,7 +25,7 @@ export const SignUpForm = props => {
   const passwordConfirmRef = React.useRef();
   const firstNamedRef = React.useRef();
   const lastNamedRef = React.useRef();
-  const countryRef = React.useRef();
+  const [countryRef, setCountryRef] = React.useState();
   const phoneNumberRef = React.useRef();
   const { signUp, addUserToDb, currentUser } = useAuth();
   const [error, setError] = React.useState('');
@@ -33,13 +33,17 @@ export const SignUpForm = props => {
   const [buttonLoading, setButtonLoading] = React.useState(false);
   const navigate = useNavigate();
 
+  const handleChange = e => {
+    setCountryRef(e.value);
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
     if (
       (firstNamedRef.current.value,
       lastNamedRef.current.value,
-      countryRef.current.value,
       phoneNumberRef.current.value,
+      countryRef,
       emailRef.current.value,
       passwordRef.current.value,
       passwordConfirmRef.current.value)
@@ -49,15 +53,14 @@ export const SignUpForm = props => {
           setInvalidInput(false);
           setError('');
           setButtonLoading(true);
-          await signUp(emailRef.current.value, passwordRef.current.value);
           await addUserToDb('RegisteredUsers', emailRef.current.value, {
             FirstName: String(firstNamedRef.current.value),
             LastName: String(lastNamedRef.current.value),
-            Country: String(countryRef.current.value),
+            Country: String(countryRef),
             PhoneNumber: Number(phoneNumberRef.current.value),
             Email: String(emailRef.current.value),
-            UID: String(currentUser.uid),
           });
+          await signUp(emailRef.current.value, passwordRef.current.value);
           navigate('/dashboard');
         } catch {
           setButtonLoading(false);
@@ -68,7 +71,7 @@ export const SignUpForm = props => {
         return [setError('Passwords do not match'), setInvalidInput(true)];
       }
     } else {
-      return setError('One of the fields is empty');
+      return setError('One or more fields are empty');
     }
   };
 
@@ -133,7 +136,7 @@ export const SignUpForm = props => {
               closeMenuOnSelect={true}
               // focusBorderColor="FFFFFF"
               selectedOptionStyle="check"
-              ref={countryRef}
+              onChange={handleChange}
             />
           </FormControl>
           <FormControl isRequired>
@@ -170,7 +173,7 @@ export const SignUpForm = props => {
               </InputGroup>
             </FormControl>
             <FormControl isRequired>
-              <FormLabel htmlFor="password">Confirm Password</FormLabel>
+              <FormLabel htmlFor="password">Check Password</FormLabel>
               <InputGroup>
                 <Input
                   isInvalid={invalidInput}

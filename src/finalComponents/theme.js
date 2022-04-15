@@ -4,8 +4,15 @@ import { mode } from '@chakra-ui/theme-tools';
 const styles = {
   global: props => ({
     body: {
-      color: mode('#141214', 'white')(props),
+      color: mode('#141214', 'whiteAlpha.900')(props),
       bg: mode('white', '#141214')(props),
+    },
+    '*::placeholder': {
+      color: mode('gray.400', 'whiteAlpha.400')(props),
+    },
+    '*, *::before, &::after': {
+      borderColor: mode('gray.200', 'whiteAlpha.300')(props),
+      wordWrap: 'break-word',
     },
   }),
 };

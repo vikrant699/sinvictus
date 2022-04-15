@@ -6,7 +6,7 @@ import SignupPage from './finalComponents/signupPage';
 import LoginPage from './finalComponents/loginPage';
 import ForgotPasswordPage from './finalComponents/forgotPasswordPage';
 import ClientDashboard from './finalComponents/clientDashboard';
-import PrivateRoute from './PrivateRoute';
+import { PrivateRoute, PublicRoute } from './PrivateRoute';
 
 function App() {
   return (
@@ -14,8 +14,22 @@ function App() {
       <Router basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="signup" element={<SignupPage />} />
-          <Route path="login" element={<LoginPage />} />
+          <Route
+            path="signup"
+            element={
+              <PublicRoute>
+                <SignupPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
           <Route path="forgot-password" element={<ForgotPasswordPage />} />
           <Route
             path="dashboard"

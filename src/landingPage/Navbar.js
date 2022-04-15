@@ -16,15 +16,27 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Stack,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuGroup,
   Link as ChakraLink,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { FiMenu } from 'react-icons/fi';
-import { FaWhatsapp, FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
+import {
+  FaWhatsapp,
+  FaTwitter,
+  FaInstagram,
+  FaFacebook,
+  FaUser,
+} from 'react-icons/fa';
 import { Logo } from '../Logo';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-scroll';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,6 +45,13 @@ export const Navbar = () => {
   const [testimonialsTab, setTestimonialsTab] = React.useState(false);
   const [pricingTab, setPricingTab] = React.useState(false);
   const [aboutTab, setAboutTab] = React.useState(false);
+  const { currentUser, logOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut = async () => {
+    await logOut();
+    navigate('/');
+  };
 
   const handleSetActive = to => {
     switch (to) {
@@ -186,19 +205,39 @@ export const Navbar = () => {
               )}
             </HStack>
             {isDesktop ? (
-              <HStack spacing="4">
-                <ColorModeSwitcher />
-                <RouterLink to="/signup">
-                  <Button>Book a Demo</Button>
-                </RouterLink>
-                <RouterLink to="/login">
-                  <Button>Log In</Button>
-                </RouterLink>
-              </HStack>
+              <>
+                {currentUser ? (
+                  <HStack spacing="4">
+                    <ColorModeSwitcher />
+                    <RouterLink to="/dashboard">
+                      <Button>Dashboard</Button>
+                    </RouterLink>
+                    <ProfileMenu logOut={handleLogOut} />
+                  </HStack>
+                ) : (
+                  <HStack spacing="4">
+                    <ColorModeSwitcher />
+                    <RouterLink to="/signup">
+                      <Button>Book a Demo</Button>
+                    </RouterLink>
+                    <RouterLink to="/login">
+                      <Button>Log In</Button>
+                    </RouterLink>
+                  </HStack>
+                )}
+              </>
             ) : (
               <>
                 <HStack spacing="4">
                   <ColorModeSwitcher />
+                  {currentUser ? (
+                    <ProfileMenu
+                      logOut={handleLogOut}
+                      name={currentUser.email}
+                    />
+                  ) : (
+                    <></>
+                  )}
                   <IconButton
                     onClick={onOpen}
                     variant="ghost"
@@ -228,7 +267,6 @@ export const Navbar = () => {
                       </Link>
                       <DrawerCloseButton />
                     </DrawerHeader>
-
                     <DrawerBody>
                       <Stack spacing="14px">
                         <Link
@@ -321,16 +359,26 @@ export const Navbar = () => {
                             About
                           </Button>
                         </Link>
-                        <RouterLink to="/signup">
-                          <Button isFullWidth="true" onClick={onClose}>
-                            Book a Demo
-                          </Button>
-                        </RouterLink>
-                        <RouterLink to="/login">
-                          <Button isFullWidth="true" onClick={onClose}>
-                            Log In
-                          </Button>
-                        </RouterLink>
+                        {currentUser ? (
+                          <RouterLink to="/dashboard">
+                            <Button isFullWidth="true" onClick={onClose}>
+                              Dashboard
+                            </Button>
+                          </RouterLink>
+                        ) : (
+                          <>
+                            <RouterLink to="/signup">
+                              <Button isFullWidth="true" onClick={onClose}>
+                                Book a Demo
+                              </Button>
+                            </RouterLink>{' '}
+                            <RouterLink to="/login">
+                              <Button isFullWidth="true" onClick={onClose}>
+                                Log In
+                              </Button>
+                            </RouterLink>
+                          </>
+                        )}
                       </Stack>
                     </DrawerBody>
                     <DrawerFooter>
@@ -375,5 +423,22 @@ export const Navbar = () => {
         </Container>
       </Box>
     </Box>
+  );
+};
+
+const ProfileMenu = props => {
+  const { logOut } = props;
+  return (
+    <Menu>
+      <MenuButton as={IconButton} variant="ghost" icon={<FaUser />} />
+      <MenuList>
+        <MenuGroup>
+          <MenuItem>My Account</MenuItem>
+          <MenuItem>Payments </MenuItem>
+          <MenuItem>Docs</MenuItem>
+          <MenuItem onClick={logOut}>Log Out</MenuItem>
+        </MenuGroup>
+      </MenuList>
+    </Menu>
   );
 };
