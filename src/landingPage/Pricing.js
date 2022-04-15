@@ -21,6 +21,14 @@ import * as React from 'react';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 
 export const Pricing = () => {
+  const [subDuration, setSubDuration] = React.useState(true);
+  const monthlySubDuration = e => {
+    setSubDuration(true);
+  };
+
+  const yearlySubDuration = e => {
+    setSubDuration(false);
+  };
   return (
     <Box as="section" bg={mode('gray.100', '#141214')} pt="20">
       <Box
@@ -51,7 +59,11 @@ export const Pricing = () => {
           <Text mt="4" fontSize="xl" color={mode('#141214', 'whiteAlpha.900')}>
             For growing teams and businesses
           </Text>
-          <DurationSwitcher mt="10" />
+          <DurationSwitcher
+            mt="10"
+            monthClick={monthlySubDuration}
+            yearClick={yearlySubDuration}
+          />
         </Flex>
 
         <Flex
@@ -73,7 +85,7 @@ export const Pricing = () => {
             colorScheme="brand"
             name="Basic"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            price="$10"
+            price={subDuration ? '$10' : '$100'}
             duration="Per user per month"
             extras="Additional storage: $25 / TB / month"
             features={[
@@ -100,7 +112,7 @@ export const Pricing = () => {
             colorScheme="red"
             name="Plus"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            price="$50"
+            price={subDuration ? '$50' : '$500'}
             duration="Per user per month"
             extras="Additional storage: $25 / TB / month"
             features={[
@@ -204,6 +216,7 @@ const CurvedLine = createIcon({
 });
 
 const RadioButton = props => {
+  const { handleClick } = props;
   const { getInputProps, getCheckboxProps, getLabelProps, state } =
     useRadio(props);
   return (
@@ -224,6 +237,7 @@ const RadioButton = props => {
           color: mode('brand.600', 'brand.200'),
           fontWeight: 'bold',
         }}
+        onClick={handleClick}
       >
         {props.children}
       </Center>
@@ -241,6 +255,7 @@ const RadioButton = props => {
 };
 
 const DurationSwitcher = props => {
+  const { monthClick, yearClick } = props;
   const { getRadioProps, getRootProps } = useRadioGroup({
     defaultValue: 'monthly',
   });
@@ -263,6 +278,7 @@ const DurationSwitcher = props => {
             {...getRadioProps({
               value: 'monthly',
             })}
+            handleClick={monthClick}
           >
             Monthly
           </RadioButton>
@@ -270,6 +286,7 @@ const DurationSwitcher = props => {
             {...getRadioProps({
               value: 'yearly',
             })}
+            handleClick={yearClick}
           >
             Yearly
           </RadioButton>
