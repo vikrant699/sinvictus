@@ -22,11 +22,11 @@ import { motion, AnimateSharedLayout } from 'framer-motion';
 
 export const Pricing = () => {
   const [subDuration, setSubDuration] = React.useState(true);
-  const monthlySubDuration = e => {
+  const monthlySubDuration = () => {
     setSubDuration(true);
   };
 
-  const yearlySubDuration = e => {
+  const yearlySubDuration = () => {
     setSubDuration(false);
   };
   return (
@@ -86,7 +86,7 @@ export const Pricing = () => {
             name="Basic"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             price={subDuration ? '$10' : '$100'}
-            duration="Per user per month"
+            duration={subDuration ? 'Per user per month' : 'Per user per year'}
             extras="Additional storage: $25 / TB / month"
             features={[
               '100 GB per user',
@@ -113,7 +113,7 @@ export const Pricing = () => {
             name="Plus"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             price={subDuration ? '$50' : '$500'}
-            duration="Per user per month"
+            duration={subDuration ? 'Per user per month' : 'Per user per year'}
             extras="Additional storage: $25 / TB / month"
             features={[
               '100 GB per user',
@@ -322,7 +322,6 @@ const PricingDetail = props => {
       display="flex"
       alignItems="flex-start"
       fontWeight="medium"
-      maxW="260px"
       {...rest}
     >
       <CheckIcon marginEnd="3" mt="1" color={iconColor} />
@@ -363,9 +362,7 @@ const PricingCard = props => {
         w="100%"
       />
 
-      <Text maxW="280px" fontSize="lg">
-        {description}
-      </Text>
+      <Text fontSize="lg">{description}</Text>
 
       <Box mt="2" textAlign="center">
         <Text
@@ -386,7 +383,7 @@ const PricingCard = props => {
       </Box>
 
       <Button my="8" size="lg" fontSize="md" colorScheme={c} onClick={onClick}>
-        Start free trial
+        Buy Now
       </Button>
 
       <Box textAlign="center">

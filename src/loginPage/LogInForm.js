@@ -78,7 +78,7 @@ export const LogInForm = props => {
       </Stack>
       <Stack spacing="6">
         <Stack spacing="5">
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input
               id="email"
@@ -88,7 +88,7 @@ export const LogInForm = props => {
               isInvalid={invalidInput}
             />
           </FormControl>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel htmlFor="password">Password</FormLabel>
             <InputGroup>
               <Input

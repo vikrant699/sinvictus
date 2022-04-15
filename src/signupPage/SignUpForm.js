@@ -103,7 +103,7 @@ export const SignUpForm = props => {
       <Stack spacing="6">
         <Stack spacing="5">
           <Stack spacing="5" direction="row" maxW="100%">
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel htmlFor="text">First Name</FormLabel>
               <Input
                 id="firstName"
@@ -112,7 +112,7 @@ export const SignUpForm = props => {
                 ref={firstNamedRef}
               />
             </FormControl>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel htmlFor="text">Last Name</FormLabel>
               <Input
                 id="lastName"
@@ -122,7 +122,7 @@ export const SignUpForm = props => {
               />
             </FormControl>
           </Stack>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel htmlFor="text">Country</FormLabel>
             <Select
               p="0"
@@ -136,8 +136,7 @@ export const SignUpForm = props => {
               ref={countryRef}
             />
           </FormControl>
-
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel htmlFor="number">Phone Number</FormLabel>
             <InputGroup>
               <Input
@@ -148,7 +147,7 @@ export const SignUpForm = props => {
               />
             </InputGroup>
           </FormControl>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input
               id="email"
@@ -158,7 +157,7 @@ export const SignUpForm = props => {
             />
           </FormControl>
           <Stack spacing="5" direction="row" maxW="100%">
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel htmlFor="password">Password</FormLabel>
               <InputGroup>
                 <Input
@@ -170,7 +169,7 @@ export const SignUpForm = props => {
                 />
               </InputGroup>
             </FormControl>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel htmlFor="password">Confirm Password</FormLabel>
               <InputGroup>
                 <Input
