@@ -5,6 +5,7 @@ import {
   Container,
   Flex,
   HStack,
+  Text,
   IconButton,
   useBreakpointValue,
   Drawer,
@@ -35,6 +36,7 @@ import {
 import { Logo } from '../Logo';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { useAuth } from '../contexts/AuthContext';
+import { useUserData } from '../contexts/UserDataContext';
 import { Link } from 'react-scroll';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
@@ -46,6 +48,7 @@ export const Navbar = () => {
   const [pricingTab, setPricingTab] = React.useState(false);
   const [aboutTab, setAboutTab] = React.useState(false);
   const { currentUser, logOut } = useAuth();
+  const { userData } = useUserData();
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
@@ -212,6 +215,7 @@ export const Navbar = () => {
                     <RouterLink to="/dashboard">
                       <Button>Dashboard</Button>
                     </RouterLink>
+                    {userData && <Text>{userData.FirstName}</Text>}
                     <ProfileMenu logOut={handleLogOut} />
                   </HStack>
                 ) : (

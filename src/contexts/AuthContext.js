@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { auth, db } from '../firebase';
+import { auth } from '../firebase';
 import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
@@ -7,7 +7,6 @@ import {
   signOut,
   sendPasswordResetEmail,
 } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const AuthContext = React.createContext();
 
@@ -17,7 +16,6 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
-  const [users, setUsers] = useState();
   const [loading, setLoading] = useState(true);
 
   const signUp = (email, password) => {
@@ -36,25 +34,14 @@ export const AuthProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
 
-  const addUserToDb = (collectionName, docID, data) => {
-    const registeredUsersRef = doc(db, collectionName, docID);
-    return setDoc(registeredUsersRef, data);
-  };
-
-  const getUserFromDb = async () => {
-    const registeredUsersRef = doc(db, 'RegisteredUsers', currentUser.email);
-    const data = await getDoc(registeredUsersRef);
-    setUsers(data.data());
-  };
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       setCurrentUser(user);
       setLoading(false);
-      getUserFromDb();
     });
+
     return unsubscribe;
-  });
+  }, [loading]);
 
   const value = {
     currentUser,
@@ -62,8 +49,6 @@ export const AuthProvider = ({ children }) => {
     logIn,
     logOut,
     resetPassword,
-    addUserToDb,
-    users,
   };
 
   return (

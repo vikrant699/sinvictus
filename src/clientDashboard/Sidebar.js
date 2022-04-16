@@ -34,7 +34,7 @@ export const Sidebar = () => (
       flex="1"
       bg="bg-surface"
       overflowY="auto"
-      boxShadow={useColorModeValue('sm', 'sm-dark')}
+      boxShadow={useColorModeValue('2xl', '2xl-dark')}
       maxW={{
         base: 'full',
         sm: 'xs',

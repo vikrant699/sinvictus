@@ -84,6 +84,7 @@ const components = {
 };
 
 const theme = extendTheme({
+  initialColorMode: 'light',
   components,
   styles,
   colors: {

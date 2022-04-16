@@ -15,6 +15,7 @@ import * as React from 'react';
 import { Select } from 'chakra-react-select';
 import { groupedCountries } from './Country_Data';
 import { useAuth } from '../contexts/AuthContext';
+import { useUserData } from '../contexts/UserDataContext';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 export const SignUpForm = props => {
@@ -27,7 +28,8 @@ export const SignUpForm = props => {
   const lastNamedRef = React.useRef();
   const [countryRef, setCountryRef] = React.useState();
   const phoneNumberRef = React.useRef();
-  const { signUp, addUserToDb, currentUser } = useAuth();
+  const { signUp } = useAuth();
+  const { addUserToDb } = useUserData();
   const [error, setError] = React.useState('');
   const [invalidInput, setInvalidInput] = React.useState(false);
   const [buttonLoading, setButtonLoading] = React.useState(false);
