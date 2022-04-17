@@ -13,15 +13,10 @@ export const UserDataProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const { currentUser } = useAuth();
 
-  const addUserToDb = (collectionName, docID, data) => {
-    const registeredUsersRef = doc(db, collectionName, docID);
-    return setDoc(registeredUsersRef, data);
-  };
-
   useEffect(() => {
     if (!currentUser) return;
     const getUserFromDb = async () => {
-      const registeredUsersRef = doc(db, 'RegisteredUsers', currentUser.email);
+      const registeredUsersRef = doc(db, 'RegisteredUsers', currentUser.uid);
       const data = await getDoc(registeredUsersRef);
       setUserData(data.data());
     };
@@ -29,7 +24,6 @@ export const UserDataProvider = ({ children }) => {
   }, [currentUser]);
 
   const value = {
-    addUserToDb,
     userData,
   };
 

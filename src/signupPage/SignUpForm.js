@@ -15,7 +15,6 @@ import * as React from 'react';
 import { Select } from 'chakra-react-select';
 import { groupedCountries } from './Country_Data';
 import { useAuth } from '../contexts/AuthContext';
-import { useUserData } from '../contexts/UserDataContext';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 export const SignUpForm = props => {
@@ -28,8 +27,7 @@ export const SignUpForm = props => {
   const lastNamedRef = React.useRef();
   const [countryRef, setCountryRef] = React.useState();
   const phoneNumberRef = React.useRef();
-  const { signUp } = useAuth();
-  const { addUserToDb } = useUserData();
+  const { signUp, currentUser, addUserToDb } = useAuth();
   const [error, setError] = React.useState('');
   const [invalidInput, setInvalidInput] = React.useState(false);
   const [buttonLoading, setButtonLoading] = React.useState(false);
@@ -55,20 +53,31 @@ export const SignUpForm = props => {
           setInvalidInput(false);
           setError('');
           setButtonLoading(true);
-          await addUserToDb('RegisteredUsers', emailRef.current.value, {
-            FirstName: String(firstNamedRef.current.value),
-            LastName: String(lastNamedRef.current.value),
-            Country: String(countryRef),
-            PhoneNumber: Number(phoneNumberRef.current.value),
-            Email: String(emailRef.current.value),
-          });
-          await signUp(emailRef.current.value, passwordRef.current.value);
+          await signUp(
+            emailRef.current.value,
+            passwordRef.current.value,
+            'RegisteredUsers',
+            {
+              FirstName: String(firstNamedRef.current.value),
+              LastName: String(lastNamedRef.current.value),
+              Country: String(countryRef),
+              PhoneNumber: Number(phoneNumberRef.current.value),
+              Email: String(emailRef.current.value),
+            }
+          );
           navigate('/dashboard');
         } catch {
           setButtonLoading(false);
           setError('Failed to create an account');
         }
         setButtonLoading(false);
+        // addUserToDb('RegisteredUsers', currentUser.uid, {
+        //   FirstName: String(firstNamedRef.current.value),
+        //   LastName: String(lastNamedRef.current.value),
+        //   Country: String(countryRef),
+        //   PhoneNumber: Number(phoneNumberRef.current.value),
+        //   Email: String(emailRef.current.value),
+        // });
       } else {
         return [setError('Passwords do not match'), setInvalidInput(true)];
       }
@@ -179,7 +188,7 @@ export const SignUpForm = props => {
               <InputGroup>
                 <Input
                   isInvalid={invalidInput}
-                  id="password"
+                  id="confirmPassword"
                   placeholder="********"
                   type={show ? 'text' : 'password'}
                   ref={passwordConfirmRef}

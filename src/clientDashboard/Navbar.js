@@ -37,7 +37,7 @@ export const Navbar = () => {
           placement="left"
           onClose={onClose}
           isFullHeight
-          preserveScrollBarGap // Only disabled for showcase
+          preserveScrollBarGap
           trapFocus={false}
         >
           <DrawerOverlay />
