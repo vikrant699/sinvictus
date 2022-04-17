@@ -1,6 +1,4 @@
 import React from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
-import theme from './theme.js';
 import { Navbar } from '../landingPage/Navbar';
 import { Hero } from '../landingPage/Hero';
 import { Services } from '../landingPage/Services';
@@ -12,7 +10,7 @@ import { Element } from 'react-scroll';
 
 function LandingPage() {
   return (
-    <ChakraProvider theme={theme}>
+    <>
       <Element id="top" name="top">
         <Navbar />
       </Element>
@@ -32,7 +30,7 @@ function LandingPage() {
         <About />
         <Footer />
       </Element>
-    </ChakraProvider>
+    </>
   );
 }
 
