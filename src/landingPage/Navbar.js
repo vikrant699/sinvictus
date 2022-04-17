@@ -212,7 +212,7 @@ export const Navbar = () => {
                 {currentUser ? (
                   <HStack spacing="4">
                     <ColorModeSwitcher />
-                    <RouterLink to="/dashboard">
+                    <RouterLink to="/dashboard/home">
                       <Button>Dashboard</Button>
                     </RouterLink>
                     {userData && <Text>{userData.FirstName}</Text>}
@@ -364,7 +364,7 @@ export const Navbar = () => {
                           </Button>
                         </Link>
                         {currentUser ? (
-                          <RouterLink to="/dashboard">
+                          <RouterLink to="/dashboard/home">
                             <Button isFullWidth="true" onClick={onClose}>
                               Dashboard
                             </Button>

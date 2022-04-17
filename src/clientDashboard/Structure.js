@@ -19,7 +19,7 @@ export default function Structure() {
           lg: 'row',
         }}
         height="100vh"
-        // bg="bg-canvas"
+        bg="bg-canvas"
         overflowY="auto"
       >
         {isDesktop ? <Sidebar /> : <Navbar />}
