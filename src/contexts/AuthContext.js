@@ -19,11 +19,6 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  const addUserToDb = (collectionName, docID, data) => {
-    const registeredUsersRef = doc(db, collectionName, docID);
-    return setDoc(registeredUsersRef, data);
-  };
-
   const signUp = async (email, password, collectionName, data) => {
     return createUserWithEmailAndPassword(auth, email, password).then(cred => {
       setDoc(doc(db, collectionName, cred.user.uid), data);
@@ -56,7 +51,6 @@ export const AuthProvider = ({ children }) => {
     signUp,
     logIn,
     logOut,
-    addUserToDb,
     resetPassword,
   };
 
