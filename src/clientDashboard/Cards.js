@@ -11,9 +11,8 @@ export const ButtonCard = props => {
   const { text, buttonText, ...rest } = props;
   return (
     <Box
+      bg={mode('white', '#242424')}
       minW={{ base: '75%', lg: '25%' }}
-      bg="bg-surface"
-      boxShadow={mode('2xl', '2xl-dark')}
       borderRadius="lg"
       {...rest}
     >
@@ -36,13 +35,7 @@ export const ButtonCard = props => {
 export const WideCard = props => {
   const { text, buttonText, ...rest } = props;
   return (
-    <Box
-      w="full"
-      bg="bg-surface"
-      boxShadow={mode('2xl', '2xl-dark')}
-      borderRadius="lg"
-      {...rest}
-    >
+    <Box bg={mode('white', '#242424')} w="full" borderRadius="lg" {...rest}>
       <Stack p="5%" spacing={8}>
         <Text>{text}</Text>
         <Button
