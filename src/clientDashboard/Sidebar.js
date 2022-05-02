@@ -4,7 +4,6 @@ import {
   Flex,
   Stack,
   Skeleton,
-  Switch,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';

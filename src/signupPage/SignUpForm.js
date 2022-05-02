@@ -27,7 +27,7 @@ export const SignUpForm = props => {
   const lastNamedRef = React.useRef();
   const [countryRef, setCountryRef] = React.useState();
   const phoneNumberRef = React.useRef();
-  const { signUp, currentUser, addUserToDb } = useAuth();
+  const { signUp } = useAuth();
   const [error, setError] = React.useState('');
   const [invalidInput, setInvalidInput] = React.useState(false);
   const [buttonLoading, setButtonLoading] = React.useState(false);

@@ -1,19 +1,12 @@
 import {
-  Button,
   Box,
-  Container,
   Heading,
   Flex,
-  HStack,
-  SimpleGrid,
   Skeleton,
   Stack,
-  Text,
-  useBreakpointValue,
   useColorModeValue as mode,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import { FiDownloadCloud } from 'react-icons/fi';
 import { ButtonCard, WideCard } from './Cards';
 import { useUserData } from '../contexts/UserDataContext';
 
