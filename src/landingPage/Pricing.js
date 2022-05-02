@@ -19,6 +19,12 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { motion, AnimateSharedLayout } from 'framer-motion';
+import {
+  addRazorpayScript,
+  removeRazorpayScript,
+  loadRazorpay,
+} from '../razorpay';
+import { useUserData } from '../contexts/UserDataContext';
 
 export const Pricing = () => {
   const [subDuration, setSubDuration] = React.useState(true);
@@ -29,6 +35,14 @@ export const Pricing = () => {
   const yearlySubDuration = () => {
     setSubDuration(false);
   };
+
+  React.useEffect(() => {
+    addRazorpayScript();
+    return () => {
+      removeRazorpayScript();
+    };
+  }, []);
+
   return (
     <Box as="section" bg={mode('gray.100', '#141214')} pt="20">
       <Box
@@ -94,6 +108,7 @@ export const Pricing = () => {
               'PDF reviews',
               'Commenting and notifications',
             ]}
+            planId={subDuration ? 'plan_JNyoopyxXmiI5J' : 'plan_JNyoopyxXmiI5J'}
           />
           <Box
             w={{
@@ -121,6 +136,7 @@ export const Pricing = () => {
               'PDF reviews',
               'Commenting and notifications',
             ]}
+            planId={subDuration ? 'plan_JNyoopyxXmiI5J' : 'plan_JNyoopyxXmiI5J'}
           />
         </Flex>
         <Box
@@ -340,10 +356,12 @@ const PricingCard = props => {
     duration,
     price,
     extras,
-    onClick,
+    planId,
     colorScheme: c,
     ...rest
   } = props;
+  const { userData } = useUserData();
+
   return (
     <Box
       p={{
@@ -382,7 +400,13 @@ const PricingCard = props => {
         </Text>
       </Box>
 
-      <Button my="8" size="lg" fontSize="md" colorScheme={c} onClick={onClick}>
+      <Button
+        my="8"
+        size="lg"
+        fontSize="md"
+        colorScheme={c}
+        onClick={e => loadRazorpay(planId, price, userData)}
+      >
         Buy Now
       </Button>
 
