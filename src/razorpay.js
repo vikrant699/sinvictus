@@ -13,10 +13,13 @@ export const removeRazorpayScript = () => {
 export const loadRazorpay = async (planId, price, userData) => {
   const data = await fetch('https://api.razorpay.com/v1/subscriptions', {
     method: 'POST',
-    header: {
+    headers: {
+      'Content-Type': 'application/json',
       Authorization:
         'Basic cnpwX3Rlc3RfNzZtSjZrMHNGOTV6V0k6SnI1TndMN3hSTmxxcGpXTEVGYmg4UHBS',
-      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Cache-Control': 'no-cache',
+      Host: 'api.razorpay.com',
     },
     body: JSON.stringify({
       plan_id: planId,
