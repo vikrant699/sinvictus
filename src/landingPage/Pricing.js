@@ -99,7 +99,7 @@ export const Pricing = () => {
             colorScheme="brand"
             name="Basic"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            price={subDuration ? '$10' : '$100'}
+            price={subDuration ? '10' : '100'}
             duration={subDuration ? 'Per user per month' : 'Per user per year'}
             extras="Additional storage: $25 / TB / month"
             features={[
@@ -127,7 +127,7 @@ export const Pricing = () => {
             colorScheme="red"
             name="Plus"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            price={subDuration ? '$50' : '$500'}
+            price={subDuration ? '50' : '500'}
             duration={subDuration ? 'Per user per month' : 'Per user per year'}
             extras="Additional storage: $25 / TB / month"
             features={[
